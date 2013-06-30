@@ -12,6 +12,9 @@ import weka.core.Instances;
 public class LoadTextFileData {
 
 	/**
+	 * It loads all the data from files within the given directory and 
+	 * returns a created set of instances from it.
+	 * 
 	 * Modified from the code found on:
 	 * http://weka.wikispaces.com/ARFF+files+from+Text+Collections
 	 * 

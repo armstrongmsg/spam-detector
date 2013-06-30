@@ -8,6 +8,11 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
 public class DataLoader {
 
 	private LoadTextFileData textFileDataLoader;
+	/**
+	 * This filter is used because some Classifiers do not handle
+	 * String data. So it converts this type of data to a numeric 
+	 * data.
+	 */
 	private StringToWordVector filter;
 	
 	public DataLoader() {
