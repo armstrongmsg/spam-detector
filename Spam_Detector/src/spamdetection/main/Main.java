@@ -25,7 +25,7 @@ public class Main {
 		// loads the data
 		DataLoader dataLoader = new DataLoader();
 		Instances trainingData = dataLoader.getTrainingData(arguments);
-		Instances realData = dataLoader.getRealData(arguments);
+		Instances realData = dataLoader.getTestData(arguments);
 		// gets the correct classifier
 		ClassifierGetter classifierGetter = new ClassifierGetter();
 		Classifier classifier = classifierGetter.getClassifier(arguments);

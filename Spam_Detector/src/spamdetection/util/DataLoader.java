@@ -2,17 +2,31 @@ package spamdetection.util;
 
 import spamdetection.detection.ProgramArguments;
 import weka.core.Instances;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.StringToWordVector;
 
 public class DataLoader {
 
-	public Instances getTrainingData(ProgramArguments arguments) {
-		// TODO Auto-generated method stub
-		return null;
+	private LoadTextFileData textFileDataLoader;
+	private StringToWordVector filter;
+	
+	public DataLoader() {
+		textFileDataLoader = new LoadTextFileData();
+		filter = new StringToWordVector();
+	}
+	
+	public Instances getTrainingData(ProgramArguments arguments) throws Exception {
+		Instances instances = textFileDataLoader.loadDataset(arguments.getTrainingSet().getAbsolutePath());
+		return filter(instances);
 	}
 
-	public Instances getRealData(ProgramArguments arguments) {
-		// TODO Auto-generated method stub
-		return null;
+	public Instances getTestData(ProgramArguments arguments) throws Exception {
+		Instances instances = textFileDataLoader.loadDataset(arguments.getTestSet().getAbsolutePath());
+		return filter(instances);
 	}
-
+	
+	private Instances filter(Instances instances) throws Exception {
+		filter.setInputFormat(instances);
+		return Filter.useFilter(instances, filter);
+	}
 }
