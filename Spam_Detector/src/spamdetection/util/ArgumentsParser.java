@@ -12,6 +12,7 @@ public class ArgumentsParser {
 	private static final int TEST_SET_DIRECTORY_INDEX = 2;
 	private static final int ARGS_EXPECTED_LENGTH = 3;
 
+	// FIXME must get the verbose option too
 	public ProgramArguments getArguments(String[] args) throws IOException {
 		if (args.length != ARGS_EXPECTED_LENGTH) {
 			throw new IOException("Incorrect number of arguments");

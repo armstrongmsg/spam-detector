@@ -1,10 +1,10 @@
 package spamdetection.main;
 
-import spamdetection.detection.ClassifierGetter;
+import spamdetection.detection.ClassifierFactory;
 import spamdetection.detection.EvaluationManager;
 import spamdetection.detection.ProgramArguments;
 import spamdetection.detection.Results;
-import spamdetection.detection.ResultsGetter;
+import spamdetection.detection.ResultsFactory;
 import spamdetection.util.ArgumentsParser;
 import spamdetection.util.DataLoader;
 import spamdetection.util.ResultsPrinter;
@@ -27,15 +27,15 @@ public class Main {
 		Instances trainingData = dataLoader.getTrainingData(arguments);
 		Instances realData = dataLoader.getTestData(arguments);
 		// gets the correct classifier
-		ClassifierGetter classifierGetter = new ClassifierGetter();
+		ClassifierFactory classifierGetter = new ClassifierFactory();
 		Classifier classifier = classifierGetter.getClassifier(arguments);
 		// tests
 		EvaluationManager evaluationManager = new EvaluationManager();
 		Evaluation test = evaluationManager.getEvaluation(classifier, trainingData, realData);
 		// print the results
-		ResultsGetter resultsGetter = new ResultsGetter();
+		ResultsFactory resultsGetter = new ResultsFactory();
 		Results results = resultsGetter.getResults(test);
-		ResultsPrinter resultsPrinter = new ResultsPrinter();
+		ResultsPrinter resultsPrinter = new ResultsPrinter(System.out);
 		resultsPrinter.print(results);
 	}
 }

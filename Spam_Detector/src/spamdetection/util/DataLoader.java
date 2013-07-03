@@ -20,6 +20,8 @@ public class DataLoader {
 		filter = new StringToWordVector();
 	}
 	
+	// FIXME one thing is missing
+	// we need to add information on if the text is spam or not.
 	public Instances getTrainingData(ProgramArguments arguments) throws Exception {
 		Instances instances = textFileDataLoader.loadDataset(arguments.getTrainingSet().getAbsolutePath());
 		return filter(instances);
