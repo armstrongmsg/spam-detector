@@ -7,6 +7,7 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
 
 public class DataLoader {
 
+	private static final int IS_SPAM_INDEX = 0;
 	private LoadTextFileData textFileDataLoader;
 	/**
 	 * This filter is used because some Classifiers do not handle
@@ -20,15 +21,17 @@ public class DataLoader {
 		filter = new StringToWordVector();
 	}
 	
-	// FIXME one thing is missing
-	// we need to add information on if the text is spam or not.
 	public Instances getTrainingData(ProgramArguments arguments) throws Exception {
 		Instances instances = textFileDataLoader.loadDataset(arguments.getTrainingSet().getAbsolutePath());
+		// FIXME create a constant for the value
+		// FIXME maybe this should be put in LoadTextFileData
+		instances.setClassIndex(IS_SPAM_INDEX);
 		return filter(instances);
 	}
 
 	public Instances getTestData(ProgramArguments arguments) throws Exception {
 		Instances instances = textFileDataLoader.loadDataset(arguments.getTestSet().getAbsolutePath());
+		instances.setClassIndex(IS_SPAM_INDEX);
 		return filter(instances);
 	}
 	
