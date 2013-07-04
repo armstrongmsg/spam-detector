@@ -40,6 +40,7 @@ public class LoadTextFileData {
 		File hamDirectory = new File(directoryPath + File.separator + IS_NOT_SPAM_DIRECTORY);
 		getSpamData(atts, instances, spamDirectory);
 		getHamData(atts, instances, hamDirectory);
+		instances.setClassIndex(INDEX_IS_SPAM);
 		return instances;
 	}
 
@@ -107,7 +108,7 @@ public class LoadTextFileData {
 		FastVector spamValues = new FastVector(2);
 		spamValues.addElement(IS_SPAM);
 		spamValues.addElement(IS_NOT_SPAM);
-		Attribute spam = new Attribute(IS_SPAM, spamValues);
+		Attribute spam = new Attribute("spam", spamValues);
 		return spam;
 	}
 }
