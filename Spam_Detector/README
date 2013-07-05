@@ -1,7 +1,7 @@
 Spam Detector
 
 O que é necessário para rodar:
-JavaRuntimeEnvironment e JavaDevelopmentKit
+JavaRuntimeEnvironment e JavaDevelopmentKit 1.7
 Ant 1.7
 
 Uso:

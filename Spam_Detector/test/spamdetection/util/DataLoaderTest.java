@@ -112,7 +112,7 @@ public class DataLoaderTest {
 		printStreamHamTestFile3.close();
 	}
 
-	//@After
+	@After
 	public void tearDown() throws Exception {
 		new File(SPAM_TRAINING_FILE_1).delete();
 		new File(SPAM_TRAINING_FILE_2).delete();
