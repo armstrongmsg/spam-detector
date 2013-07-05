@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+OUTPUT_TMP_FILE=".tmp_output_ant"
+JAR_DIRECTORY="."
+JAR_NAME="spam_detector.jar"
+
+ant -q jar > $OUTPUT_TMP_FILE
+rm $OUTPUT_TMP_FILE
+java -cp lib/weka.jar -jar $JAR_DIRECTORY/$JAR_NAME $1 $2 $3

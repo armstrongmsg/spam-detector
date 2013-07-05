@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project Spam_Detector with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <property name="src_dir" value="src" />
+    <property name="build_dir" value="build" />
+    <property name="classes_dir" value="${build_dir}/classes" />
+    <property name="jar_dir" value="${build_dir}/jar" />
+    <property name="jar_name" value="spam-detector.jar" />
+    <property name="lib_dir" value="lib" />
+    <property name="main-class" value="spamdetection.main.Main" />
+
+    <target name="clean">
+	<delete file="spam_detector.jar"/>
+    </target>
+  
+    <target name="build" depends="clean">
+        <mkdir dir="${classes_dir}" />
+        <javac srcdir="${src_dir}" destdir="${classes_dir}" classpathref="classpath" />
+    </target>
+
+    <target name="jar" depends="build">
+        <jar destfile="spam_detector.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="spamdetection.main.Main"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ weka.jar junit.jar org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="bin"/>
+            <zipfileset dir="lib" includes="weka.jar"/>
+        </jar>
+    </target>
+</project>

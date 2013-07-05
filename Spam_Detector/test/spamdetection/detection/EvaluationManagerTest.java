@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import spamdetection.util.DataLoader;
+import spamdetection.util.ResultsPrinter;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
 import weka.core.Instances;
@@ -146,6 +147,45 @@ public class EvaluationManagerTest {
 		// tests
 		EvaluationManager evaluationManager = new EvaluationManager();
 		Evaluation test = evaluationManager.getEvaluation(classifier, trainingData, realData);		
-		System.out.println(test.toSummaryString());
+		ResultsFactory resultsGetter = new ResultsFactory();
+		Results results = resultsGetter.getResults(test);
+		ResultsPrinter resultsPrinter = new ResultsPrinter(System.out);
+		resultsPrinter.print(results);
+	}
+	
+	@Test
+	public void testGetEvaluationJ48graft() throws Exception {
+		ProgramArguments arguments = new ProgramArguments("J48graft", trainingSet, testSet);
+		// loads the data
+		Instances trainingData = dataLoader.getTrainingData(arguments);
+		Instances realData = dataLoader.getTestData(arguments);
+		// gets the correct classifier
+		ClassifierFactory classifierGetter = new ClassifierFactory();
+		Classifier classifier = classifierGetter.getClassifier(arguments);
+		// tests
+		EvaluationManager evaluationManager = new EvaluationManager();
+		Evaluation test = evaluationManager.getEvaluation(classifier, trainingData, realData);		
+		ResultsFactory resultsGetter = new ResultsFactory();
+		Results results = resultsGetter.getResults(test);
+		ResultsPrinter resultsPrinter = new ResultsPrinter(System.out);
+		resultsPrinter.print(results);
+	}
+	
+	@Test
+	public void testGetEvaluationRandomTree() throws Exception {
+		ProgramArguments arguments = new ProgramArguments("RandomTree", trainingSet, testSet);
+		// loads the data
+		Instances trainingData = dataLoader.getTrainingData(arguments);
+		Instances realData = dataLoader.getTestData(arguments);
+		// gets the correct classifier
+		ClassifierFactory classifierGetter = new ClassifierFactory();
+		Classifier classifier = classifierGetter.getClassifier(arguments);
+		// tests
+		EvaluationManager evaluationManager = new EvaluationManager();
+		Evaluation test = evaluationManager.getEvaluation(classifier, trainingData, realData);		
+		ResultsFactory resultsGetter = new ResultsFactory();
+		Results results = resultsGetter.getResults(test);
+		ResultsPrinter resultsPrinter = new ResultsPrinter(System.out);
+		resultsPrinter.print(results);
 	}
 }
